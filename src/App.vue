@@ -1,25 +1,22 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <h2>ESTILO DESDE APP</h2>
-
-  <contador titulo="Contador1" :valor="10" />
-  <contador titulo="Contador2" :valor="calcularValor()" />
-  <contador titulo="Contador2" />
+  <h1>CALCULADORA</h1>
+  <h1>BASICA</h1>
+  <calculadora />
 </template>
 
 <script>
-import Contador from './components/Contador.vue'
+import calculadora from "./components/calculadora.vue";
 export default {
-  name: 'App',
+  name: "App",
   components: {
-    Contador,
+    calculadora,
   },
   methods: {
     calcularValor() {
       return 5 + 5 * 100;
     },
-  }
-}
+  },
+};
 </script>
 
 <style>
@@ -29,6 +26,6 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
+  margin-top: 30px;
 }
 </style>
