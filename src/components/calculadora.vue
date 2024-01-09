@@ -7,7 +7,7 @@
         >
       </div>
       <button class="col-2" @click="calcClear()">C</button>
-      <button class="ideliminar" @click="calcClear()">←</button>
+      <button class="ideliminar" @click="ClearUno()">br</button>
       <button @click="calc('/')">/</button>
       <button @click="calc('7')">7</button>
       <button @click="calc('8')">8</button>
@@ -30,54 +30,37 @@
  
 <script>
 export default {
+  props: {
+    valor: {
+      type: Number,
+    },
+  },
+
   data() {
     return {
       resultado: "",
     };
   },
+
   methods: {
-    sumar(num1, num2) {
-      return num1 + num2;
+    calc(numero) {
+      this.resultado += numero;
     },
-    restar(num1, num2) {
-      return num1 - num2;
+
+    calcClear() {
+      this.resultado = "";
     },
-    multiplicar(num1, num2) {
-      return num1 * num2;
-    },
-    dividir(num1, num2) {
-      return num1 / num2;
-    },
-    convertir(idCampo) {
-      return parseInt(document.getElementById(idCampo).value);
-    },
-    insertarElemento() {
-      document.getElementById("elemento").innerHTML =
-        "<strong>Importante</strong>"; //si se tenia un elemento anterior este se eliminara y se remplazara por el nuevo
-    },
-    eliminarElemento() {
-      var elemento = document.getElementById("ideliminar");
-      if (elemento) {
-        elemento.remove();
+
+    calcRes() {
+      try {
+        this.resultado = eval(this.resultado);
+      } catch (error) {
+        limpiar();
       }
     },
-    calc(num) {
-      this.resultado += num;
-      document.getElementById("labelResultado").innerHTML =
-        "Resultado: " + this.resultado;
-      console.log(this.resultado);
-    },
-    calcClear() {
-      this.resultado = this.resultado.slice(0, -1); // esto elimina el ultimo numero
-      document.getElementById("labelResultado").innerHTML =
-        "Resultado: " + this.resultado;
-    },
-    calcRes() {
-      let resNumerico = parseFloat(eval(this.resultado));
-      document.getElementById("labelResultado").innerHTML =
-        "Resultado: " + resNumerico;
-      console.log(resNumerico);
-      this.resultado = resNumerico;
+
+    ClearUno() {
+      this.resultado = this.resultado.slice(0, -1);
     },
   },
 };
