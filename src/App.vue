@@ -1,18 +1,19 @@
 <template>
-  <calculadora />
-
   <Pregunta />
+  <!-- <FormularioPokemon /> -->
 </template>
 
 <script>
+import FormularioPokemonVue from "./components/FormularioPokemon.vue";
 //import contador from './components/contador.vue'
-import calculadora from "./components/calculadora.vue";
-//import Pregunta from "./components/Pregunta.vue";
+//import calculadora from "./components/calculadora.vue";
+import Pregunta from "./components/Pregunta.vue";
+//import FormularioPokemon from "./components/FormularioPokemon.vue";
 
 export default {
   name: "App",
   components: {
-    calculadora,
+    Pregunta,
   },
   methods: {
     calcularValor() {
