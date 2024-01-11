@@ -1,21 +1,20 @@
 <template>
-  <img v-if="img !== null" v-bind:src="img" alt="No se puede visualizar" />
   <div class="dark"></div>
   <div class="container">
-    <form class="form" action="" method="">
+    <form @submit.prevent="consumirURLAPI(id)" class="form" action="" method="">
       <h2>Pokemon</h2>
       <p type="Id:">
-        <input id="idNombre" type="number" v-model="id" />
+        <input id="idNumero" type="number" v-model="id" />
       </p>
-      <p type="Name:">
-        <label id="idName" type="text" />
-      </p>
-      <p type="Weight:">
-        <label id="idWeight" type="text" />
-      </p>
-      <p type="base_experience:">
-        <label id="idbase_experience" type="text" />
-      </p>
+
+      <label for="name">Name:</label>
+      <p id="name">{{ name }}</p>
+
+      <label for="weight">Weight:</label>
+      <p id="weight">{{ weight }}</p>
+
+      <label for="base_experience">Base Experience:</label>
+      <p id="base_experience:">{{ base_experience }}</p>
     </form>
   </div>
 </template>
@@ -24,24 +23,24 @@
 export default {
   data() {
     return {
-      pokemonId: "",
-      pokemonData: null,
+      id: null,
+      name: null,
+      weight: null,
+      base_experience: null,
     };
   },
-  watch: {
-    pregunta(value) {
-      if (!value.includes("0")) return;
-      this.consumirApi();
-    },
-  },
+  watch: {},
 
   methods: {
-    async consumirApi(id) {
+    async consumirURLAPI(id) {
       const { name, base_experience, weight } = await fetch(
         "https://pokeapi.co/api/v2/pokemon/" + id
       ).then((respuesta) => respuesta.json());
+      console.log(name);
 
-      this.pokemonData = { name, weight, base_experience };
+      this.name = name;
+      this.weight = weight;
+      this.base_experience = base_experience;
     },
   },
 };
@@ -49,48 +48,59 @@ export default {
 
 
 <style scoped>
-/* hace que el estilo flote, y no lo pone ni abajo ni arriba, va a estar atras como marca de agua */
-.dark,
-img {
-  height: 100vh;
-  width: 100vw;
-  max-height: 100%;
-  max-width: 100%;
-  position: fixed;
-  top: 0px;
-  left: 0px;
-}
-
-.dark {
-  background: rgba(0, 0, 0, 0.4);
-}
-
-input {
-  width: 250px;
-  padding: 10px 15px;
-  border-radius: 5px;
-  border: none;
+body {
+  background-color: #59abe3;
 }
 
 .container {
-  position: relative;
+  justify-content: left;
+  align-items: left;
+}
+
+.form {
+  width: 340px;
+  height: 450px;
+  background-color: #eecfcf;
+  border-radius: 8px;
+  padding: 20px 30px;
+  box-shadow: 0 0 40px -10px #868181;
+}
+
+h2 {
+  margin: 10px 0px;
+  padding-bottom: 10px;
+  width: 180px;
+  color: #78788c;
+  border-bottom: 3px solid #78788c;
+}
+
+p:before {
+  content: attr(type);
+  display: block;
+  margin: 5px 2px;
+  font-size: 16px;
+  color: #5a5a5a;
+  justify-content: left;
+  align-items: left;
+}
+
+input {
+  width: 100%;
+  border: 0;
+  border-bottom: 2px solid #bebed2;
+  background: rgb(167, 103, 103);
+  color: white;
 }
 
 input:focus {
-  outline: none;
+  border-bottom: 3px solid #78788c;
 }
-
+label {
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+}
 p {
-  color: white;
-  font-size: 20px;
-  margin-top: 0px;
-}
-
-h1,
-h2 {
-  color: white;
-}
-h2 {
-  margin-top: 150px;
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+  border-bottom: 2px solid #bebed2;
 }
 </style>
