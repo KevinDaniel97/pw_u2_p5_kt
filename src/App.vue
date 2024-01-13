@@ -1,23 +1,14 @@
 <template>
-  <FormularioPokemon />
+  <PokemonPage2 />
 </template>
 
 <script>
-import FormularioPokemonVue from "./components/FormularioPokemon.vue";
-//import contador from './components/contador.vue'
-//import calculadora from "./components/calculadora.vue";
-//import Pregunta from "./components/Pregunta.vue";
-import FormularioPokemon from "./components/FormularioPokemon.vue";
+import PokemonPage2 from "./pages/PokemonPage2.vue";
 
 export default {
   name: "App",
   components: {
-    FormularioPokemon,
-  },
-  methods: {
-    calcularValor() {
-      return 5 + 5 * 100;
-    },
+    PokemonPage2,
   },
 };
 </script>
@@ -27,7 +18,7 @@ export default {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: left;
+  text-align: center;
   color: #2c3e50;
   margin-top: 60px;
 }
