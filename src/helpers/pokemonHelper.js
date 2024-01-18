@@ -1,28 +1,71 @@
 const obtenerIdPokemons = () => {
-    const pokemonsl = getRandomInt(600)
-    const pokenons2 = getRandomInt(600)
-    const pokemons3 = getRandomInt(600)
-    const pokemons4 = getRandomInt(600)
-    const pokemonsArr = [pokemonsl, pokenons2, pokemons3, pokemons4]
+    const poemons2 = obtnerAleatorio2(600);
+    const poemons3 = obtnerAleatorio2(600);
+    const poemons4 = obtnerAleatorio2(600);
+    const poemons1 = obtnerAleatorio2(600);
 
-    console.log(pokemonsArr)
-}
-const obtenerNombresPokemons = (arreglo) => {
-    const nombre1 = consumirAPI(arreglo[0]);
-    const nombre2 = consumirAPI(arreglo[1]);
-    const nombre3 = consumirAPI(arreglo[2]);
-    const nombre4 = consumirAPI(arreglo[3]);
+    const pokemonsArray = [poemons1, poemons2, poemons3, poemons4]
+    console.log(pokemonsArray);
 
-}
-function consumirAPI(id) {
-    return "nombre"
+    return pokemonsArray;
 }
 
-const obtenerIdPokemonsFachada = () => {
-    obtenerIdPokemons()
+const obtenerNombresPokemons = async ([p1, p2, p3, p4]) => {
+    const nombre1 = await consultarNombre(p1);
+    const nombre2 = await consultarNombre(p2);
+    const nombre3 = await consultarNombre(p3);
+    const nombre4 = await consultarNombre(p4);
+
+    const pk1 = {
+        id: p1,
+        nombre: nombre1
+    }
+
+    const pk2 = {
+        id: p2,
+        nombre: nombre2
+    }
+
+    const pk3 = {
+        id: p3,
+        nombre: nombre3
+    }
+
+    const pk4 = {
+        id: p4,
+        nombre: nombre4
+    }
+
+    const arreglo = [pk1, pk2, pk3, pk4];
+    console.log('nuevo')
+    console.log(arreglo)
+
+    return arreglo
+
 }
 
-function getRandomInt(max) {
-    return Math.floor(Math.random() * max) + 1;
+const obtenerPokemons = async () => {
+    const aregloId = obtenerIdPokemons()
+    return await obtenerNombresPokemons(aregloId)
 }
-export default obtenerIdPokemonsFachada
+
+async function consultarNombre(id) {
+    const data = await consumirAPI(id);
+    return data.name;
+}
+
+
+const consumirAPI = async (id) => {
+    return await fetch(`https://pokeapi.co/api/v2/pokemon/${id}`).then(r => r.json())
+}
+
+const obtenerPokemonsFachada = async () => {
+    return await obtenerPokemons()
+}
+
+
+function obtnerAleatorio2(max) {
+    return Math.floor((Math.random() * max) + 1)
+}
+
+export default obtenerPokemonsFachada;

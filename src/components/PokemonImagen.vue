@@ -16,7 +16,7 @@ export default {
   showPokemon: {
     type: Boolean,
     required: true,
-    default: true,
+    default: false,
   },
   computed: {
     imagenFuente() {
@@ -28,7 +28,7 @@ export default {
 
 <style>
 .ocultar {
-  filter: brightness(1);
+  filter: brightness(0);
 }
 img {
   height: 200px;
