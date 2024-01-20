@@ -1,40 +1,15 @@
 <template>
-  <div class="container">
-    <h1>Casino Pokemon</h1>
-    <div class="juego" v-if="mostrarJuego">
-      <h2>Puntaje:{{ puntaje }}</h2>
-      <h2>Intentos: {{ intentos }}</h2>
-
-      <div class="cuadros">
-        <Imagen class="imgText" :urlImg="url1" :texto="texto1"></Imagen>
-        <Imagen class="imgText" :urlImg="url2" :texto="texto2"></Imagen>
-        <Imagen class="imgText" :urlImg="url3" :texto="texto3"> </Imagen>
-      </div>
-
-      <button v-on:click="jugar()">JUGAR</button>
-    </div>
-
-    <div v-if="mostrarPerdedor">
-      <h1>has utilizado tus 5 intentos</h1>
-      <h1>El juego ha termindo, intentalo nuevamente</h1>
-      <button @click="reiniciar">Reiniciar</button>
-    </div>
-
-    <div v-if="mostrarGanador">
-      <h1>Puntaje: {{ puntaje }}</h1>
-      <h1>Felicitaciones has ganado un premio de $10.000,00</h1>
-      <button @click="reiniciar">Reiniciar</button>
-    </div>
-  </div>
+  <pokemonPage2 />
 </template>
 
 <script>
-import Imagen from "./components/Imagen.vue";
+import PokemonPage2 from "./pages/PokemonPage2.vue";
+//import Imagen from "./components/Imagen.vue";
 
 export default {
   name: "App",
   components: {
-    Imagen,
+    PokemonPage2,
   },
   data() {
     return {
@@ -138,6 +113,7 @@ button {
   border-radius: 5px;
   box-shadow: 15px black;
 }
+
 .cuadros .imgText {
   border: 2px solid rgb(68, 2, 2);
   display: grid;
@@ -149,6 +125,7 @@ button {
   padding: 10px;
   background: #aacff3;
 }
+
 .cuadros {
   display: flex;
   justify-content: center;
