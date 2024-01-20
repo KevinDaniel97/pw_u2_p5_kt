@@ -6,17 +6,17 @@
       <h2>Intentos: {{ intentos }}</h2>
 
       <div class="cuadros">
-        <Imagen :urlImg="url1" :texto="texto1"></Imagen>
-        <Imagen :urlImg="url2" :texto="texto2"></Imagen>
-        <Imagen :urlImg="url3" :texto="texto3"> </Imagen>
+        <Imagen class="imgText" :urlImg="url1" :texto="texto1"></Imagen>
+        <Imagen class="imgText" :urlImg="url2" :texto="texto2"></Imagen>
+        <Imagen class="imgText" :urlImg="url3" :texto="texto3"> </Imagen>
       </div>
 
-      <button v-on:click="jugar()">jugar</button>
+      <button v-on:click="jugar()">JUGAR</button>
     </div>
 
     <div v-if="mostrarPerdedor">
       <h1>has utilizado tus 5 intentos</h1>
-      <h1>"El juego ha termindo, intentalo nuevamente</h1>
+      <h1>El juego ha termindo, intentalo nuevamente</h1>
       <button @click="reiniciar">Reiniciar</button>
     </div>
 
@@ -43,9 +43,9 @@ export default {
       url1: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/1.svg",
       url2: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/2.svg",
       url3: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/3.svg",
-      texto1: "xxxxx",
-      texto2: "xxxxx",
-      texto3: "xxxxx",
+      texto1: "XXXXXXXXXXXXXXXX",
+      texto2: "XXXXXXXXXXXXXXXX",
+      texto3: "XXXXXXXXXXXXXXXX",
       mostrarPerdedor: false,
       mostrarGanador: false,
       mostrarJuego: true,
@@ -110,9 +110,9 @@ export default {
         "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/2.svg";
       this.url3 =
         "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/3.svg";
-      this.texto1 = "xxxxx";
-      this.texto2 = "xxxxx";
-      this.texto3 = "xxxxx";
+      this.texto1 = "XXXXXXXXXXXXXXXX";
+      this.texto2 = "XXXXXXXXXXXXXXXX";
+      this.texto3 = "XXXXXXXXXXXXXXXX";
       this.mostrarGanador = false;
       this.mostrarPerdedor = false;
       this.mostrarJuego = true;
@@ -125,22 +125,36 @@ export default {
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
   margin-top: 60px;
 }
 
+button {
+  padding: 5px;
+  width: 140px;
+  font-size: 27px;
+  border: solid 2px black;
+  border-radius: 5px;
+  box-shadow: 15px black;
+}
+.cuadros .imgText {
+  border: 2px solid rgb(68, 2, 2);
+  display: grid;
+  justify-content: center;
+  align-items: center;
+  color: rgb(16, 16, 124);
+  margin-bottom: 25px;
+  font: bold;
+  padding: 10px;
+  background: #aacff3;
+}
 .cuadros {
   display: flex;
   justify-content: center;
   align-items: center;
-}
-
-button {
-  padding: 10px;
-  width: 140px;
-  font-size: 27px;
-  border: solid 3px black;
+  color: rgb(16, 16, 124);
+  margin-bottom: 25px;
+  font: bold;
 }
 </style>
